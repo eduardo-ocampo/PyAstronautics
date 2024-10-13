@@ -6,7 +6,6 @@ __pycache__/
 # Developer Files
 dev_*
 
-
 # C extensions
 *.so
 
