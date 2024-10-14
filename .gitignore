@@ -5,6 +5,7 @@ __pycache__/
 
 # Developer Files
 dev_*
+.DS_Store
 
 # C extensions
 *.so

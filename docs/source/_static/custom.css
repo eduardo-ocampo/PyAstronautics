@@ -1,0 +1,15 @@
+table.align-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Center figures */
+figure {
+    text-align: center;
+}
+
+/* Center figure captions */
+figure figcaption {
+    text-align: center;
+}
+
