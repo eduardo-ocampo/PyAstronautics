@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyAstronautics"
+version = "0.0.1"
+description = "A Python package designed for astronautical engineers, providing tools for spacecraft design analysis, simulations, and optimization"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Eduardo Ocampo", email = "ocampoe@usc.edu" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: Apache License Version 2.0",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "numpy",
+    "scipy"
+]
+
+[project.urls]
+"Documentation" = "https://eduardo-ocampo.github.io/PyAstronautics/"
+"Source" = "https://github.com/eduardo-ocampo/PyAstronautics"
+
+[project.optional-dependencies]
+docs = [
+    "sphinx",
+    "sphinx-wagtail-theme",
+    "myst-parser"
+]
+
