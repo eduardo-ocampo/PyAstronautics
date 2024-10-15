@@ -31,9 +31,6 @@ jobs:
           cd docs
           sphinx-build -M html ./source ./_build
 
-      - name: List output directory
-        run: ls -R
-
       - name: Upload documentation
         uses: actions/upload-artifact@v4
         with:
@@ -46,6 +43,7 @@ jobs:
     if: github.event_name == 'pull_request'  # Only deploy on pull requests
 
     permissions:
+      pages: write
       id-token: write 
 
     steps:
