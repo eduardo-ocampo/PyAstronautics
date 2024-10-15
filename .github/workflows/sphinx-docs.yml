@@ -36,6 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     if: github.event_name == 'pull_request'  # Only deploy on pull requests
+    
+    permissions:
+      id-token: write 
 
     steps:
       - name: Checkout code
