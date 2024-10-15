@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
@@ -32,4 +32,4 @@ jobs:
         run: |
           cd docs
           sphinx-build -M html ./source ./build 
-          echo "::set-output name=build_dir::$(pwd)/_build/html"  # Set the output directory
+          echo "build_dir=$(pwd)/_build/html" >> $GITHUB_ENV
