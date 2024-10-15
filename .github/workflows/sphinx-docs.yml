@@ -29,7 +29,7 @@ jobs:
         id: build
         run: |
           cd docs
-          sphinx-build -M html ./source ./build
+          sphinx-build -M html ./source ./_build
 
       - name: List output directory
         run: ls -R
