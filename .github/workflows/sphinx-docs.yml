@@ -39,7 +39,6 @@ jobs:
 
   deploy:
     needs: build
-    if: github.event_name == 'pull_request'  # Only deploy on pull requests
 
     permissions:
       pages: write
