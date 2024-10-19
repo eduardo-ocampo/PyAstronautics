@@ -1,8 +1,9 @@
 name: Release Package To Pypi
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - '*'  # Trigger on push to any branch
 
 jobs:
   pypi-publish:
