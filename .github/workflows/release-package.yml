@@ -1,8 +1,9 @@
 name: Release Package To Pypi
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - 'v*'  # Triggers when a tag matching 'v*' is pushed
 
 jobs:
   pypi-publish:
