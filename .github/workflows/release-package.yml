@@ -6,27 +6,58 @@ on:
       - '*'  # Trigger on push to any branch
 
 jobs:
-  pypi-publish:
-    name: Publish release to PyPI
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/p/pyastronautics
-    permissions:
-      id-token: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          python-version: '3.9'
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install setuptools wheel
-      - name: Build package
+          python -m pip install build
+          
+      - name: Build the package
         run: |
-          python setup.py sdist bdist_wheel
+          python -m build
+
+      - name: Upload package artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: package-artifacts
+          path: dist/*
+          
+  pypi-publish:
+    name: upload release to PyPI
+
+    environment:
+      name: pypi
+      url: https://pypi.org/p/pyastronautics
+
+    permissions:
+      id-token: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download package artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: package-artifacts
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+
+  push:
+    branches:
+      - '*'  # Trigger on push to any branch
