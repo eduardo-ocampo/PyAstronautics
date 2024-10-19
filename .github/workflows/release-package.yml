@@ -1,0 +1,30 @@
+name: Release Package To Pypi
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  pypi-publish:
+    name: upload release to PyPI
+
+    environment: 
+      name: release
+
+    permissions:
+      id-token: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download package artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: package-artifacts
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
