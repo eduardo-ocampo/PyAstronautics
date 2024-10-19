@@ -27,6 +27,5 @@ jobs:
         with:
           python-version: '3.9'
 
-    steps:
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
