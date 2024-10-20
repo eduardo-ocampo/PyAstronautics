@@ -18,8 +18,6 @@ classifiers = [
 ]
 
 dependencies = [
-    "typing",
-    "math",
     "numpy",
     "scipy"
 ]
