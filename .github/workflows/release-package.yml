@@ -38,7 +38,7 @@ jobs:
 
     environment:
       name: release
-      
+
     permissions:
       id-token: write
 
@@ -48,11 +48,15 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: package-artifacts
+        run: |
+          ls -R
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
+        run: |
+          ls -R
 
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
