@@ -3,7 +3,7 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "PyAstronautics"
+name = "pyastronautics"
 version = "0.0.17"
 description = "A Python package designed for astronautical engineers, providing tools for spacecraft design analysis, simulations, and optimization"
 readme = "README.md"
