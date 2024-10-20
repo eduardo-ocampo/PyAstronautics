@@ -9,7 +9,7 @@
 project = 'PyAstronautics'
 copyright = '2024, Eduardo Ocampo'
 author = 'Eduardo Ocampo'
-release = '0.0.1'
+release = '0.0.15'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

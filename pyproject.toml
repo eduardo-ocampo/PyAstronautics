@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PyAstronautics"
-version = "0.0.1"
+version = "0.0.15"
 description = "A Python package designed for astronautical engineers, providing tools for spacecraft design analysis, simulations, and optimization"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -14,7 +14,6 @@ authors = [
 requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: Apache License Version 2.0",
     "Operating System :: OS Independent",
 ]
 

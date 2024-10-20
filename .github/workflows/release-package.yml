@@ -2,8 +2,8 @@ name: Release Package To Pypi
 
 on:
   push:
-    tags:
-      - 'v*'  # Triggers when a tag matching 'v*' is pushed
+    branches:
+      - 'v*'  # Trigger on tag pushes
 
 jobs:
   build:
@@ -31,12 +31,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: package-artifacts
-          path: dist/*
+          path: ./dist
           
   pypi-publish:
     name: upload release to PyPI
 
-    environment: 
+    environment:
       name: release
 
     permissions:
@@ -53,6 +53,13 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
+
+      # Workaround for Uploaded Artifacts
+      - name: Create dist folder
+        run: |
+          mkdir -p dist
+          cp *.whl dist/
+          cp *.tar.gz dist/
 
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
