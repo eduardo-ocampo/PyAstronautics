@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: package-artifacts
-          path: dist/*
+          path: dist
           
   pypi-publish:
     name: upload release to PyPI
@@ -48,13 +48,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: package-artifacts
-        run: |
-          ls -R
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
+
+      - name: List files
         run: |
           ls -R
 
