@@ -37,9 +37,8 @@ jobs:
     name: upload release to PyPI
 
     environment:
-      name: pypi
-      url: https://pypi.org/p/pyastronautics
-
+      name: release
+      
     permissions:
       id-token: write
 
