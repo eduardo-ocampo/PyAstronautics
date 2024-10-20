@@ -56,9 +56,10 @@ jobs:
 
       # Workaround for Uploaded Artifacts
       - name: Create dist folder
-        run: mkdir -p dist
-        run: cp *.whl dist/
-        run: cp *.tar.gz dist/
+        run: |
+          mkdir -p dist
+          cp *.whl dist/
+          cp *.tar.gz dist/
 
       - name: List files
         run: |
