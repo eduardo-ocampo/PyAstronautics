@@ -2,7 +2,7 @@ name: Release Package To Pypi
 
 on:
   push:
-    branches:
+    tags:
       - 'v*'  # Trigger on tag pushes
 
 jobs:
