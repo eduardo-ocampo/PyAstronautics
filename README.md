@@ -4,6 +4,24 @@ PyAstronautics is a Python package designed for astronautical engineers, providi
 
 Ad Astra! 💫
 
+![Documentation Status](https://github.com/eduardo-ocampo/pyastronautics/actions/workflows/sphinx-docs.yml/badge.svg)
+![Build Status](https://github.com/eduardo-ocampo/pyastronautics/actions/workflows/build-package.yml/badge.svg)
+![Release Status](https://github.com/eduardo-ocampo/pyastronautics/actions/workflows/release-package.yml/badge.svg)
+![PyPI Latest Release](https://img.shields.io/pypi/v/pyastronautics)
+![License](https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg)
+
+# Installation 
+
+Installers for the latest released version are available at the [Python Package Index (PyPI)](https://pypi.org/project/pyastronautics/)
+
+```shell
+pip install pyastronautics
+```
+
+# Documentation
+
+The long-form documentation and examples for this project are hosted Github Pages: [PyAstronautics Documentation](https://eduardo-ocampo.github.io/PyAstronautics/)
+
 ## License
 
 Copyright 2024 Eduardo Ocampo
