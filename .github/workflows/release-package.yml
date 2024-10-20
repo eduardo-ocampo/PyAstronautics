@@ -61,9 +61,5 @@ jobs:
           cp *.whl dist/
           cp *.tar.gz dist/
 
-      - name: List files
-        run: |
-          ls -R
-
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
