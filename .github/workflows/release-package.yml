@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: package-artifacts
-          path: ./dist
+          path: ./github/workspace/dist
           
   pypi-publish:
     name: upload release to PyPI
