@@ -4,10 +4,10 @@ PyAstronautics is a Python package designed for astronautical engineers, providi
 
 Ad Astra! 💫
 
-![Test Status](https://img.shields.io/github/actions/workflow/status/eduardo-ocampo/pyastronautics/test-package.yml?branch=main&style=flat-square&logo=github&logoColor=white&label=Pytests&color=blue)
-![Documentation Status](https://img.shields.io/github/actions/workflow/status/eduardo-ocampo/pyastronautics/sphinx-docs.yml?branch=main&style=flat-square&logo=github&logoColor=white&label=Build%20%26%20Deploy%20Documentation&color=blue)
-![PyPI - Version](https://img.shields.io/pypi/v/PyAstronautics?style=flat-square&logo=python&logoColor=white&color=00A86B)
-![GitHub License](https://custom-icon-badges.demolab.com/github/license/eduardo-ocampo/pyastronautics?style=flat-square&logo=law&logoColor=white&color=00A86B)
+![Test Status](https://img.shields.io/github/actions/workflow/status/eduardo-ocampo/pyastronautics/test-package.yml?branch=main&style=flat-square&logo=github&logoColor=white&label=Pytests&color=00A86B)
+![Documentation Status](https://img.shields.io/github/actions/workflow/status/eduardo-ocampo/pyastronautics/sphinx-docs.yml?branch=main&style=flat-square&logo=github&logoColor=white&label=Build%20%26%20Deploy%20Documentation&color=00A86B)
+![PyPI - Version](https://img.shields.io/pypi/v/PyAstronautics?style=flat-square&logo=python&logoColor=white&color=blue)
+![GitHub License](https://custom-icon-badges.demolab.com/github/license/eduardo-ocampo/pyastronautics?style=flat-square&logo=law&logoColor=white&color=blue)
 
 [![Made With](https://img.shields.io/badge/Made_With-Stardust-pink?style=flat-square&logo=electron&logoColor=white)](https://github.com/eduardo-ocampo/PyAstronautics)
 [![USC Astro](https://custom-icon-badges.demolab.com/badge/USC-Astro-red?style=flat-square&logo=mortar-board&logoColor=white&labelColor=990000&color=FFCC00)](https://viterbigradadmission.usc.edu/programs/masters/msprograms/astronautical-engineering/)
