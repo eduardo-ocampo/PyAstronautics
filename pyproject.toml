@@ -32,4 +32,6 @@ docs = [
     "sphinx-wagtail-theme",
     "myst-parser"
 ]
-
+test = [
+    "pytest"
+]
