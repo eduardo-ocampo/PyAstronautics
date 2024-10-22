@@ -20,7 +20,7 @@ pip install pyastronautics
 
 # Documentation
 
-The long-form documentation and examples for this project are hosted Github Pages: [PyAstronautics Documentation](https://eduardo-ocampo.github.io/PyAstronautics/)
+The long-form documentation and examples for this project are hosted on Github Pages: [PyAstronautics Documentation](https://eduardo-ocampo.github.io/PyAstronautics/)
 
 ## License
 
