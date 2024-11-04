@@ -178,7 +178,7 @@ class CR3BP(object):
 
         ivp = self.initial_state_vector
 
-        self.num_sol = solve_ivp(self.differential_equations,
+        self.num_sol = solve_ivp(self.non_dim_differential_equations,
                                 [self.time[0],self.time[-1]],
                                  ivp,
                                  t_eval=self.time,
