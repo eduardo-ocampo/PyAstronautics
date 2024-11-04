@@ -119,7 +119,7 @@ r^*_2 &= \sqrt{\left( x^* - 1 + \mu \right)^2+{y^*}^2+{z^*}^2}
 
 <figure id="cr3bp_nondim_potent" style="text-align: center;">
   <iframe src="../../_static/astrodynamics/three_body_problem/cr3bp_non_dim_force_potential.html" width="100%" height="500px"></iframe>
-  <figcaption style="text-align: center; font-weight: bold;">Figure 1.6. Example of Non-Dimensional CR3BP Potential</figcaption>
+  <figcaption style="text-align: center;"><strong>Figure 1.6.</strong> Example of Non-Dimensional CR3BP Potential</figcaption>
 </figure>
 
 ## Dimensional Transformation

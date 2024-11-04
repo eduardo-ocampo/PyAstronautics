@@ -196,7 +196,7 @@ The potential energy is made up of three components
 
 <figure id="cr3bp_potent" style="text-align: center;">
   <iframe src="../../_static/astrodynamics/three_body_problem/cr3bp_force_potential.html" width="100%" height="500px"></iframe>
-  <figcaption style="text-align: center; font-weight: bold;">Figure 1.5. Example of CR3BP Potential</figcaption>
+  <figcaption style="text-align: center;"><strong>Figure 1.5.</strong> Example of CR3BP Potential</figcaption>
 </figure>
 
 ### Equations of Motion
