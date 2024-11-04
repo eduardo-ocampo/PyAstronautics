@@ -3,33 +3,32 @@
    https://github.com/eduardo-ocampo/PyAstronautics
 """
 
+import math
 import pickle
 import numpy as np
 from typing import Union
 from numpy.linalg import norm
 from scipy.integrate import solve_ivp
 
-from .base_model import TwoBodyOrbitalModel
-
-class TwoBodyModel(TwoBodyOrbitalModel):
+class CR3BP(object):
     """
-    Represents a two-body system with position and velocity vectors.
+    Non-Dimensional Circular Restricted Three-Body Problem as defined in the
+    jacobi coordinate frame and shifted into the rotating frame.
+
+    This Python class is derived from and setup as two_body_problem:TwoBodyModel
 
     Attributes
     ----------
-    orbit_elements : OrbitElements 
-        An instance that holds the orbital parameters.
     mu : float
-        The gravitational parameter (standard gravitational constant) of the central body,
-        set to Earth's gravitational constant (3.986004418E+05 km^3/sec^2).
+        Mass ratio of the primary bodies, set to Earth-Moon System by default.
     position : list[float]
-        The 3D position vector of the object in kilometers (km).
+        The 3D position vector of the object.
     velocity : list[float] 
-        The 3D velocity vector of the object in kilometers per second (km/s).
+        The 3D velocity vector of the object.
     position_norm : float
-        The magnitude of the position vector in kilometers (km).
+        The magnitude of the position vector.
     velocity_norm : float
-        The magnitude of the velocity vector in kilometers per second (km/s).
+        The magnitude of the velocity vector.
     initial_state_vector : list[float]
         The concatenated initial state vector combining
         position and velocity, used for numerical analysis.
@@ -41,33 +40,30 @@ class TwoBodyModel(TwoBodyOrbitalModel):
         The filename for the pickle file to store numerical solution data.
    
     """
-    
     def __init__(self, position: list[float], velocity: list[float]):
         """
-        Initialize the TwoBodyModel instance with initial position and velocity vectors.
+        Initialize the Non-Dimensional CR3BP instance with initial
+        position and velocity vectors.
 
         Parameters
         ----------
         position : list[float]
-            The 3D position vector in km
+            The 3D position vector
         velocity : list[float]
-            The 3D velocity vector in km/sec
+            The 3D velocity vector
 
         Raises
         ------
         TypeError
             If position or velocity is not a list.
-        
         """
-
-        # Set Gravitational Constant
+        # Set Non-Dimensional CR3BP Primary Bodies Mass Ratio
         # ---------------------------------------   
-        # Default Set to Earth
-        self.mu = 3.986004418E+05 # km^3/sec^2
+        # Default Set to Earth-Moon System
+        self.mu = 0.012150515586657583
 
         # Set Position and Velocity Vector
         # ---------------------------------------   
-        # Assumed input is in (km, sec)    
         if not isinstance(position, list):
             raise TypeError("position must be a list.")
         if not isinstance(velocity, list):
@@ -79,11 +75,6 @@ class TwoBodyModel(TwoBodyOrbitalModel):
         self.position_norm = norm(position)
         self.velocity_norm = norm(velocity)
 
-        # Initialize Orbit Element Object
-        # ---------------------------------------
-        # Call the parent class's __init__ method
-        super().__init__(position, velocity)
-
         # Numerical Analysis Setup
         # ---------------------------------------
         self.initial_state_vector = position + velocity
@@ -93,18 +84,18 @@ class TwoBodyModel(TwoBodyOrbitalModel):
 
         # Set File Names
         # ---------------------------------------   
-        self.num_sol_pickle_file = "twoBody_trajectory.pickle"        
+        self.num_sol_pickle_file = "cr3bp_solution.pickle"  
 
-    def differential_equations(self, t: float, state: Union[list, np.ndarray]) -> np.ndarray:
+    def non_dim_differential_equations(self, t: float, state: Union[list, np.ndarray]) -> np.ndarray:
         """
-        Define the differential equations for the Two-Body Problem using their
-        Equations of Motions.
+        Define the non-dimensional differential equations for the Circular Restricted Three-Body
+        Problem using their Equations of Motions.
 
         This method computes the derivatives of the state vector `state`, which includes both position and 
-        velocity components. The equations describe the motion of two bodies under their mutual 
-        gravitational influence.
+        velocity components. The equations describe the motion of a third body under its mutual 
+        gravitational influence of two bodies. Assuming the third body has zero mass. 
 
-        The state vector `state` is expected to be structured as follows:
+        The vector `state` is expected to be structured as follows:
         [x, y, z, vx, vy, vz], where:
             - x, y, z: position coordinates of the body
             - vx, vy, vz: velocity components of the body
@@ -129,28 +120,31 @@ class TwoBodyModel(TwoBodyOrbitalModel):
             state = np.array(state)
         elif not isinstance(state, np.ndarray):
             raise ValueError("state must be a list or a NumPy array.")
+            
+        x,y,z, vx,vy,vz = state
+        
+        # Compute Differential Equation Constants: Position to Primary Bodies
+        r1 = math.sqrt((x+self.mu)**2 + y**2 + z**2)
+        r2 = math.sqrt((x-1+self.mu)**2 + y**2 + z**2)
 
-        pos = state[0:3]
-        vel = state[3:]
-
-        # Compute Differential Equation Constants
-        constant = -self.mu/(norm(pos)**3)
-
-        # Differential Equations
-        accel = np.dot(constant,pos)
+        # Differential Equations: ddot is a second derivative
+        x_ddot =  2*vy + x - (1-self.mu)*(x+self.mu)/r1**3 - self.mu*(self.mu+x-1)/r2**3
+        y_ddot = -2*vx + y - y*(1-self.mu)/r1**3 - self.mu*y/r2**3
+        z_ddot =  -z*(1-self.mu)/r1**3 - self.mu*z/r2**3
 
         # Return d/dt vector of
         # [x, y, z, vx, vy, vx]
-        return np.concatenate((vel,accel))
+        return np.concatenate(([vx,vy,vz],[x_ddot,y_ddot,z_ddot]))
 
-    def solve_trajectory(self, save_analysis:bool = False) -> None:
+    def solve_non_dim_trajectory(self, save_analysis:bool = False) -> None:
         """
-        Solve the trajectory of a Two-Body system using the initial value problem (IVP).
+        Solve the trajectory of the Non-Dimensional Circular Restricted Three-Body Problem using the
+        initial value problem (IVP).
 
         This method uses the `scipy.integrate.solve_ivp()` function to numerically integrate the differential equations 
         governing the motion of the bodies, given the initial conditions specified in `self.initial_state_vector`.
 
-        Before calling this method, ensure that `self.time` is defined as a sequence of time points in seconds
+        Before calling this method, ensure that `self.time` is defined as a sequence of non-dimensional time points
         over which the simulation will be evaluated. If `self.time` is not defined, a ValueError will be raised.
 
         The initial value problem must be set up in the following format:
@@ -184,8 +178,8 @@ class TwoBodyModel(TwoBodyOrbitalModel):
 
         ivp = self.initial_state_vector
 
-        self.num_sol = solve_ivp(self.differential_equations,
-                                 [self.time[0],self.time[-1]],
+        self.num_sol = solve_ivp(self.non_dim_differential_equations,
+                                [self.time[0],self.time[-1]],
                                  ivp,
                                  t_eval=self.time,
                                  rtol=self.rel_tol,
@@ -199,7 +193,7 @@ class TwoBodyModel(TwoBodyOrbitalModel):
 
         # Extract Position and Velocity Results
         self.numerical_position = self.num_sol.y[:3,:].T
-        self.numerical_velocity = self.num_sol.y[3::,:].T
+        self.numerical_velocity = self.num_sol.y[3:,:].T
 
         self.final_state = self.num_sol.y[:,-1].T
 
@@ -207,4 +201,3 @@ class TwoBodyModel(TwoBodyOrbitalModel):
         if save_analysis:
             with open(self.num_sol_pickle_file, 'wb') as handle:
                 pickle.dump(self, handle)
-
