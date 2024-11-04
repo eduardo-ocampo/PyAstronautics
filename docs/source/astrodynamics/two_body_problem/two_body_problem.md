@@ -49,8 +49,8 @@ Each particle has a State Vector made up of its position and velocity:
 :::{math}
 :label: eq:state_vector
 \mathbf{x} = \begin{bmatrix} 
-    x_0       \\ y_0       \\ z_0 \\
-    \dot{x_0} \\ \dot{y_0} \\ \dot{z_0}
+    x       \\ y       \\ z \\
+    \dot{x} \\ \dot{y} \\ \dot{z}
 \end{bmatrix}
 :::
 

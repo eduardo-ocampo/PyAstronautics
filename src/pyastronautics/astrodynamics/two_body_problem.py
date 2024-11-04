@@ -37,8 +37,6 @@ class TwoBodyModel(TwoBodyOrbitalModel):
         Absolute tolerance value for numerical analysis, default is 1e-10.
     rel_tol : float
         Relative tolerance value for numerical analysis, default is 1e-10.
-    results_file : str
-        The filename where orbit elements results will be stored.
     num_sol_pickle_file : str
         The filename for the pickle file to store numerical solution data.
    
@@ -46,7 +44,7 @@ class TwoBodyModel(TwoBodyOrbitalModel):
     
     def __init__(self, position: list[float], velocity: list[float]):
         """
-        Initialize the TwoBodyModel instance with position and velocity vectors.
+        Initialize the TwoBodyModel instance with initial position and velocity vectors.
 
         Parameters
         ----------
@@ -87,15 +85,14 @@ class TwoBodyModel(TwoBodyOrbitalModel):
         super().__init__(position, velocity)
 
         # Numerical Analysis Setup
-        # --------------------------------------------------------------------------------
+        # ---------------------------------------
         self.initial_state_vector = position + velocity
         # Default tolerance values
         self.abs_tol = 1e-10
         self.rel_tol = 1e-10
 
         # Set File Names
-        # --------------------------------------------------------------------------------   
-        self.results_file = "orbitElements.txt"
+        # ---------------------------------------   
         self.num_sol_pickle_file = "twoBody_trajectory.pickle"        
 
     def differential_equations(self, t: float, state: Union[list, np.ndarray]) -> np.ndarray:
@@ -146,12 +143,12 @@ class TwoBodyModel(TwoBodyOrbitalModel):
         # [x, y, z, vx, vy, vx]
         return np.concatenate((vel,accel))
 
-    def solve_trajectory(self, save_analysis=False) -> None:
+    def solve_trajectory(self, save_analysis:bool = False) -> None:
         """
         Solve the trajectory of a Two-Body system using the initial value problem (IVP).
 
         This method uses the `scipy.integrate.solve_ivp()` function to numerically integrate the differential equations 
-        governing the motion of the bodies, given the initial conditions specified in `self.initial_value_problem`.
+        governing the motion of the bodies, given the initial conditions specified in `self.initial_state_vector`.
 
         Before calling this method, ensure that `self.time` is defined as a sequence of time points in seconds
         over which the simulation will be evaluated. If `self.time` is not defined, a ValueError will be raised.
