@@ -103,13 +103,14 @@ Using this method, interactive [Figure 1.13](forbidden_region_interactive) was c
 
 [Figure 1.13](forbidden_region_interactive) is initialized with slider set to $C = 3.5$ for reference. As the Jacobi Constant for the Earth-Moon System decreases towards 3.0 notice how the forbidden region gets smaller in size. 
 
+As Jacobi Constant $C$ continues to decrease in [Figure 1.13](forbidden_region_interactive) the region in space between both Lagrange Point 2 and Lagrange Point 3 begin to open. This is shown in [Figure 1.13](forbidden_region_interactive) by toggling slider between $C = 3.180$ and $C = 3.013$. As $C$ gets closer to 3.0 the forbidden regions disappear to a singularity corresponding to the location of Lagrange Point 4 (L4) and Lagrange Point 5 (L5). For the Earth-Moon System the minimum Jacobi Constant is approximately **2.988043**. This can be shown by hovering your cursor around L4 and L5 on interactive [Figure 1.13](forbidden_region_interactive).
+
 For $C = 3.18827$ the forbidden region around the Moon comes to a singularity at Lagrange Point 1. As shown with more detail in [Figure 1.14](L1_forbidden_region) below.
 
 <figure id="L1_forbidden_region" style="text-align: center;">
   <iframe src="../../_static/astrodynamics/three_body_problem/cr3bp_forbidden_region.html" style="width: 100%; max-width: 100%; height: 80vh; border: none;"></iframe>
   <figcaption style="text-align: center; font-weight: bold;">Figure 1.14. Singularity of the Jacobi Constant at L1 </figcaption>
 </figure>
-
 
 Now for $C \lt 3.18827$ a direct path from the Earth to the Moon begins to appear (Low Energy Transfer). At a high level, Mission Design Engineers aim to change a spacecraft's velocity just enough so that a trajectory exists between two primary bodies using very small energy. For example, here are some more references for how this is used on the Earth-Moon system for [Low Energy Transfer](http://www.gg.caltech.edu/~mwl/publications/papers/lowEnergy.pdf) and [Free-Return Trajectory](https://en.wikipedia.org/wiki/Free-return_trajectory) as means of sending spacecraft to the Moon. 
 
@@ -158,7 +159,7 @@ Use the same methods from [Python Example](cr3bp.md#python-example) for generati
 
 The animation shows the Jacobi Constant starting at a value of 3.190 and ending with a constant of 3.176. For a fixed spacecraft position {eq}`jc_traj_initial_position` and impulse angle {eq}`jc_traj_initial_theta` as $C$ decreases the magnitude of $\Delta V$ required to maintain the Zero-Velocity Surface {eq}`solve_zvc` increases from 1.015956 to 1.022823. If the mission requirements is to design a trajectory towards the Moon region of space, than we can analyze the minimum $\Delta V$ required until the L1 region opens up but notice how the orbit shape around the Moon also changes with increased velocity. At some point the increase to the initial velocity sets the spacecraft up to return towards L1 and given a $TOF\gt 2.2\pi$ the spacecraft can return towards the primary body. 
 
-As Jacobi Constant $C$ continues to decrease in [Figure 1.14](L1_forbidden_region) the region in space between both Lagrange Point 2 and Lagrange Point 3 begin to open. This is shown in [Figure 1.14](L1_forbidden_region) by toggling slider between $C = 3.180$ and $C = 3.013$. As $C$ gets closer to 3.0 the forbidden regions disappear to a singularity corresponding to the location of Lagrange Point 4 (L4) and Lagrange Point 5 (L5). For the Earth-Moon System the minimum Jacobi Constant is approximately **2.988043**. This can be shown by hovering your cursor around L4 and L5 on interactive [Figure 1.14](L1_forbidden_region).
+## Zero-Velocity Curves
 
 Lastly, the same analysis can be done to demonstrate how the forbidden regions change in 3-dimensional space along the Potential Surfaces {eq}`cr3bp_V_norm` introduced in section [Non-Dimensional Circular Restricted Three-Body Problem](cr3bp.md#non-dimensional-circular-restricted-three-body-problem)
 
@@ -168,6 +169,7 @@ Lastly, the same analysis can be done to demonstrate how the forbidden regions c
 :width: 100%
 **Figure 1.16** Animation of Zero-Velocity Curves for the Earth-Moon System 
 ```
-### Acknowledgements
+
+## Acknowledgements
 
 Special thanks to Ari Rubinsztejn of [gereshes.com](https://gereshes.com/) for their publication on the Three-Body Problem. Their work played a key role in helping verify & validate the Python routines I created for this section. I encourage the reader to visit Rubinsztejn's work on the Jacobi Integral and how it varies with $\mu$, or at the very least appreciate the informative plots they created by visiting their site [Jacobi and His Constant – The 3-Body Problem](https://gereshes.com/2018/11/26/jacobi-and-his-constant-the-3-body-problem).
