@@ -8,4 +8,5 @@ cr3bp.md
 non-dim_cr3bp.md
 cr3bp_example.md
 jacobi_constant.md
+forbidden_regions.md
 ```
