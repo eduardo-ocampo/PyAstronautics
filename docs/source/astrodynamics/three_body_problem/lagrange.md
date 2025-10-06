@@ -274,9 +274,6 @@ The Lagrange Points ($L_{1-5}$) are fixed equilibrium points within the rotating
 
 For a non-restricted Three-Body Problem system ($\mu_3 \neq 0$), these 5 Lagrange Points still exist. However, the positions of the collinear Lagrange Points are shifted. If the primaries $P_1$ and $P_2$ are on an elliptical orbit, analogue of the Lagrange Points do also exists. 
 
-
-TODO: Maybe add an updated figure of topoolgy of lagrange points?
-
 ## Python Example
 
 Astrodynamics module [three_body_problem](https://github.com/eduardo-ocampo/PyAstronautics/blob/main/src/pyastronautics/astrodynamics/three_body_problem.py) contains all that is needed to solve for both the collinear and equilateral Lagrange Points. Begin by initializing `planar_lagrange_points` with the system's mass ratio $\mu$. Then by calling method `get_points()` the scripts will numerically solve for $L_{1-3}$ through class method `colinear_points()` and analytically solve for $L_{4-5}$ through class method `triangular_points()`. Storing the results as attributes.
